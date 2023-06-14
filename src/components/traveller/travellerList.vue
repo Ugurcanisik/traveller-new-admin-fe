@@ -124,6 +124,7 @@ export default {
         {key: 'name', label: 'Yerin Adı ', sortable: true, class: 'text-center'},
         {key: 'description', label: 'Yerin Açıklama', sortable: true, class: 'text-center'},
         {key: 'category.name', label: 'Yerin kategorisi', sortable: true, class: 'text-center'},
+        {key: 'isVerify', label: 'Onay Durumu', sortable: false, class: 'text-center'},
         {key: 'actions', label: 'İşlemler', class: 'text-center'}
       ],
     }

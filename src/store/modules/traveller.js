@@ -54,8 +54,8 @@ const actions = {
         return axios.post('/travels', payload)
             .then(response => {
                 if (response.status === 201) {
-                    console.log(response)
                     payload.id = response.data.id;
+                    payload.isVerify = true;
                     const category = store.getters.allCategories
                     category.forEach(element => {
                         if (element.id == payload.category) {
@@ -91,6 +91,7 @@ const actions = {
                     if (response.status === 200) {
                         travel[0].name = payload.data.name
                         travel[0].description = payload.data.description
+                        travel[0].isVerify = payload.data.isVerify
                         const category = store.getters.allCategories
                         category.forEach(element => {
                             if (element.id == payload.data.category) {

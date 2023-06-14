@@ -38,6 +38,14 @@
           ></b-form-select>
         </div>
 
+        <div class="form-group form-floating-label" :class="{'has-error': $v.updateProduct.isVerify.$error}">
+          <b-form-select
+              class="form-control input-border-bottom"
+              v-model="$v.updateProduct.isVerify.$model"
+              :options="[{value:true, text: 'Onaylı'},{value: false, text: 'Onaylı Değil'}]"
+          ></b-form-select>
+        </div>
+
       </div>
       <div class="modal-footer no-bd" style="margin: 0 auto">
         <b-button variant="primary" @click="update" :disabled="$v.updateProduct.$invalid">Güncelle</b-button>
@@ -58,7 +66,8 @@ export default {
         description: null,
         price: null,
         categoryId: null,
-        picture: null
+        picture: null,
+        isVerify:null
       },
       id: null
     }
@@ -75,7 +84,8 @@ export default {
           name: this.updateProduct.name,
           description: this.updateProduct.description,
           category: this.updateProduct.categoryId,
-          picture: this.updateProduct.picture
+          picture: this.updateProduct.picture,
+          isVerify:this.updateProduct.isVerify
         }
       }
       this.$store.dispatch("updateTravel", updateProduct)
@@ -115,6 +125,9 @@ export default {
       this.updateProduct.categoryId = payload[0].category.id
       this.updateProduct.picture = payload[0].picture
       this.id = payload[0].id
+      this.updateProduct.isVerify = payload[0].isVerify
+
+      console.log(payload)
       this.$refs['updateProduct'].show()
     }
   },
@@ -122,6 +135,7 @@ export default {
     updateProduct: {
       name: {required},
       description: {},
+      isVerify:{},
       categoryId: {required}
     }
   }
